@@ -29,18 +29,18 @@ const Register = () => {
                         <div className="cred-container">
                             <form className='form-control'>
                                 <div className="mb-3 single-input">
-                                    <label for="email" className="form-label">Email</label>
+                                    <label htmlFor="email" className="form-label">Email</label>
                                     <input type="email" className="form-control" id="email" 
                                     placeholder="name@example.com"/>
                                 </div>
                                 <div className="mb-3 single-input">
-                                    <label for="password" className="form-label">Password</label>
+                                    <label htmlFor="password" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="password" 
                                     placeholder="@333test"/>
 
                                 </div>
                                 <button className='btn btn-primary register-button'>
-                                    Create new account
+                                    Create Account
                                 </button>
                             </form>
                         </div>

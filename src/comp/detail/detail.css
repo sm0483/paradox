@@ -1,0 +1,111 @@
+.detail .img-progress{
+    display: flex;
+    
+}
+
+.detail progress{
+    width: 50%;
+    height: 1.5em;
+}
+
+
+.detail{
+    min-height: 100vh;
+
+}
+
+.detail .detail-page{
+    height: 100vh;
+}
+
+.detail .detail-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+    align-items: center;
+}
+
+.detail .input-container{
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2em;
+    box-shadow: rgba(100, 100, 111, 0.01) 0px 7px 29px 0px;
+    width: 40%;
+}
+
+
+.detail .input-head{
+    width: 100%;
+    padding: 0.7em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    row-gap: 1.3em;
+
+}
+
+.detail .input-head h3{
+    font-weight: 600;
+    font-size: 2em;
+}
+
+.detail .input-head p{
+    font-size: 1.2em;
+    font-weight: 400;
+}
+
+.detail .button-container{
+    display: flex;
+    flex-direction:row;
+    column-gap: 1em;
+}
+
+
+.detail .cred-container{
+    width: 100%;
+}
+
+.detail .cred-container form{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5em;
+}
+
+.detail .detail-button{
+    width: 35%;
+}
+
+
+
+.detail .cred-container .single-input{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+.detail .cred-container .single-input label{
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.detail .cred-container .single-input input{
+    font-size: 1em;
+}
+
+.detail .navigation{
+    padding: 1em 2em 0em 0em;
+}
+
+.detail .navigation a{
+    margin-left: 0.5em;
+}
+
+
+
+
