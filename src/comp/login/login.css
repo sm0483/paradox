@@ -1,0 +1,140 @@
+.login{
+    min-height: 100vh;
+
+}
+
+.login .login-page{
+    height: 100vh;
+}
+
+.login .login-input{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 1em;
+}
+
+.login .input-container{
+    background-color: white;
+    margin:0em 16em 0em 25em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 2em;
+    box-shadow: rgba(100, 100, 111, 0.01) 0px 7px 29px 0px;
+}
+
+
+.login .input-head{
+    width: 100%;
+    padding: 0.7em;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+    row-gap: 1.3em;
+
+}
+
+.login .input-head h3{
+    font-weight: 600;
+    font-size: 2em;
+}
+
+.login .button-container{
+    display: flex;
+    flex-direction:row;
+    column-gap: 1em;
+}
+
+.login .btn-google{
+    display: inline-block;
+    background: white;
+    color: #444;
+    width: 190px;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+    display: flex;
+    column-gap: 0.5em;
+}
+
+.login .btn-google .btnIcon{
+    vertical-align: middle;
+}
+
+.login .btn-google .btnText{
+    display: inline-block;
+    vertical-align: middle;
+    font-size: 14px;
+    font-weight: bold;
+    font-family: 'Roboto', sans-serif;
+    padding-top: 0.23em;
+    height: 100%;
+}
+
+.login .btn-twitter{
+    display: inline-block;
+    background: #F2F2F2;
+    color: rgb(17, 3, 3);
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px rgb(199, 197, 197);
+    white-space: nowrap;
+    display: flex;
+    column-gap: 0.5em;
+    justify-content: center;
+    align-items: center;
+}
+
+.login .underline{
+    border: 1px solid whitesmoke;
+    width: 80%;
+}
+
+
+.login .cred-container{
+    width: 100%;
+}
+
+.login .cred-container form{
+    border: none;
+    display: flex;
+    flex-direction: column;
+    row-gap: 1.5em;
+}
+
+.login .login-button{
+    width: 5em;
+}
+
+
+
+.login .cred-container .single-input{
+    display: flex;
+    flex-direction: column;
+    row-gap: 1em;
+}
+
+.login .cred-container .single-input label{
+    font-size: 1.2em;
+    font-weight: 600;
+}
+
+.login .cred-container .single-input input{
+    font-size: 1em;
+}
+
+.login .navigation{
+    padding: 1em 2em 0em 0em;
+}
+
+.login .navigation a{
+    margin-left: 0.5em;
+}
+
+
+
+
