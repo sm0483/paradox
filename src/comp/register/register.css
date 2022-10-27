@@ -12,17 +12,18 @@
     flex-direction: column;
     justify-content: center;
     padding: 1em;
+    align-items: center;
 }
 
 .register .input-container{
     background-color: white;
-    margin:0em 16em 0em 25em;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     row-gap: 2em;
     box-shadow: rgba(100, 100, 111, 0.01) 0px 7px 29px 0px;
+    width: 40%;
 }
 
 
