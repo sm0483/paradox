@@ -98,14 +98,13 @@
     font-size: 1em;
 }
 
-.detail .navigation{
-    padding: 1em 2em 0em 0em;
-}
 
-.detail .navigation a{
-    margin-left: 0.5em;
-}
 
+.detail .btn-container{
+    margin-top: 1.5em;
+    display: flex;
+    justify-content: space-between;
+}
 
 
 

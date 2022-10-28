@@ -1,3 +1,13 @@
+import '../src/comp/login/login.css'
+import '../src/comp/register/register.css'
+import '../src/comp/reset/reset.css'
+import './index.css'
+import '../src/comp/login/login.css'
+import '../src/comp/detail/detail.css'
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+
+
 import {
   BrowserRouter as Router,
   Routes,
@@ -11,8 +21,17 @@ import Main from './comp/main/Main'
 import Detail from './comp/detail/Detail'
 import Reset from './comp/reset/Reset'
 import NotFound from './comp/notfound/NotFound'
+import { useAuth } from './context/AuthContext'
 
+const RequireAuth=({children})=>{
+    const {currentUser}=useAuth();
+    if(!currentUser){
+      return <Navigate to='/' />
+    }
 
+    return children;
+
+}
 
 
 function App() {
@@ -23,8 +42,16 @@ function App() {
           <Route path='/' element={<Login/>}/>
           <Route path='/register' element={<Register/>}/>
           <Route path='/error' element={<Error/>}/>
-          <Route path='/home' element={<Main/>}/>
-          <Route path='/detail' element={<Detail/>}/>
+          <Route path='/home' element={
+            <RequireAuth>
+              <Main/>
+            </RequireAuth>
+          }/>
+          <Route path='/detail' element={
+            <RequireAuth>
+              <Detail/>
+            </RequireAuth>
+          }/>
           <Route path='/reset' element={<Reset/>}/>
           <Route path='*' element={<NotFound/>}/>
         </Routes>

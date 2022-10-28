@@ -1,6 +1,4 @@
 import detail from '../../assets/login.jpg'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './detail.css'
 import { Link } from 'react-router-dom';
 const Detail = () => {
     return ( 
@@ -31,9 +29,14 @@ const Detail = () => {
                                 <div className=" mb-3 single-input img-progress">
                                         <progress value={20} max="100"></progress>
                                 </div>
-                                <button className='btn btn-primary detail-button'>
-                                    Save
-                                </button>
+                                <div className="btn-container">
+                                    <button className='btn btn-primary detail-button '>
+                                        Save
+                                    </button>
+                                    <button className='btn btn-primary detail-button'>
+                                        Skip
+                                    </button>
+                                </div>
                             </form>
                         </div>
                     </div>

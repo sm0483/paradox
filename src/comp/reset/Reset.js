@@ -1,6 +1,4 @@
 import reset from '../../assets/login.jpg'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './reset.css'
 import { Link } from 'react-router-dom';
 
 const Reset = () => {

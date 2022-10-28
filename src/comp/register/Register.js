@@ -1,9 +1,60 @@
 import register from '../../assets/register.jpg'
 import './register.css'
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {FcGoogle} from 'react-icons/fc'
 import {TfiTwitter} from 'react-icons/tfi'
+import { useState } from 'react';
+import { useError } from '../../context/ErrorContext';
+import {auth, db} from '../../firebase/Firebase'
+import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+
+
+
 const Register = () => {
+
+    const [email,setEmail]=useState("");
+    const [password,setPassword]=useState("");
+    const {getError,err}=useError();
+    const navigate=useNavigate();
+
+    const createUser=async()=>{
+        try{
+            const response=await createUserWithEmailAndPassword(auth,email,password);
+            console.log(response.user.uid);
+            navigate('/detail');
+        }catch(err){
+            getError(err.message);
+            navigate('/error');
+        }
+    }
+
+
+    const handleSubmit=async(e)=>{
+        e.preventDefault();         
+        try{
+            await createUser();
+        }catch(err){
+            console.log(err.message);
+            getError(err.message);
+            navigate('/error');
+        }
+
+    }
+
+    const provider=new GoogleAuthProvider();
+    const popupLogin=async()=>{
+        try{
+            const response=await signInWithPopup(auth,provider);
+            console.log(response.user.uid);
+            navigate('/home')
+        }catch(err){
+            console.log(err.message);
+            getError(err.message);
+            navigate('/error');
+        }
+    }
+
+
     return ( 
         <section className="register container-fluid">
             <div className="register-page row">
@@ -16,6 +67,7 @@ const Register = () => {
                             <h3>Sign up to Paradox</h3>
                             <div className="button-container">
                                 <button className="btn btn-google"
+                                onClick={popupLogin}
                                 >
                                     <span className='btnIcon'><FcGoogle/></span>
                                     <span className='btnText'>Sign in with Google</span>
@@ -31,15 +83,21 @@ const Register = () => {
                                 <div className="mb-3 single-input">
                                     <label htmlFor="email" className="form-label">Email</label>
                                     <input type="email" className="form-control" id="email" 
-                                    placeholder="name@example.com"/>
+                                    placeholder="name@example.com"
+                                    value={email} onChange={(e)=>setEmail(e.target.value)}
+                                    />
                                 </div>
                                 <div className="mb-3 single-input">
                                     <label htmlFor="password" className="form-label">Password</label>
                                     <input type="password" className="form-control" id="password" 
-                                    placeholder="@333test"/>
+                                    placeholder="@333test"
+                                    value={password} onChange={(e)=>setPassword(e.target.value)}
+                                    />
 
                                 </div>
-                                <button className='btn btn-primary register-button'>
+                                <button className='btn btn-primary register-button'
+                                onClick={(e)=>handleSubmit(e)}
+                                >
                                     Create Account
                                 </button>
                             </form>

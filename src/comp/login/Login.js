@@ -1,6 +1,4 @@
 import login from '../../assets/login.jpg'
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './login.css'
 import { Link } from 'react-router-dom';
 import {FcGoogle} from 'react-icons/fc'
 import {TfiTwitter} from 'react-icons/tfi'
