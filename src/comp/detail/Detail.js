@@ -1,10 +1,32 @@
 import detail from '../../assets/login.jpg'
 import { useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useError } from '../../context/ErrorContext';
 import {doc, updateDoc} from 'firebase/firestore'
 import {useAuth} from '../../context/AuthContext'
-import { db } from '../../firebase/Firebase';
+import { auth, db } from '../../firebase/Firebase';
+import { storage } from '../../firebase/Firebase';
+import { ref,uploadBytesResumable,getDownloadURL } from 'firebase/storage';
+import { useReducer } from 'react';
+import { updateProfile } from 'firebase/auth';
+
+const reducer=(state,action)=>{
+    switch(action.type){
+        case "upload":
+            return {...state,
+                message:"uploading..",
+                progress:action.progress
+            };
+        case "error":
+            return {
+                ...state,
+                message:action.message,
+                err:true,
+            };
+        default:
+            return state;        
+    }
+}
 
 const Detail = () => {
     const navigate=useNavigate();
@@ -12,20 +34,23 @@ const Detail = () => {
     const [image,setImage]=useState("");
     const {getError}=useError();
     const {currentUser}=useAuth();
-
-    const handleSkip=()=>{
-        navigate('/home');
+    const [imageUrl,setImageUrl]=useState("");
+    const imageState={
+        progress:0,
+        err:false,
+        message:""
     }
 
-    const uploadData=async()=>{
+    const [state,dispatch]=useReducer(reducer,imageState);
+
+
+    const uploadDataDb=async()=>{
         try{
-            console.log(currentUser.uid);
-            const response=await updateDoc(doc(db,"user",currentUser.uid),{
-                uid:currentUser.uid,
+            console.log(currentUser.uid+"fish");
+            await updateDoc(doc(db,"user",currentUser.uid),{
                 name,
-                photoURL:"cat"
+                photoURL:imageUrl
             });
-            console.log(response);
         }catch(err){
             console.log(err.message)
             getError(err.message);
@@ -33,10 +58,58 @@ const Detail = () => {
 
     }
 
-    const handleSave=async()=>{
-        await uploadData();
+    const uploadDataAuth=async()=>{
+        try{
+            await updateProfile(auth.currentUser,{
+                displayName:name,
+                photoURL:imageUrl
+            })
+        }catch(err){
+            console.log(err.message)
+            getError(err.message);
+        }
+    }
+
+    const handleSave=async(e)=>{
+        e.preventDefault();
+        try{         
+            await uploadDataDb();
+            await uploadDataAuth();
+            navigate('/home');
+        }catch(err){
+            getError(err.message)
+        }
 
     }
+
+    const handleSkip=()=>{
+        navigate('/home');
+    }
+
+
+    useEffect(()=>{
+        const updateImage=async()=>{
+            const imageRef=ref(storage,`images/${currentUser.uid}`);
+            const uploadTask = uploadBytesResumable(imageRef,image);
+
+            uploadTask.on('state_changed',
+                (snapshot)=>{
+                    const value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    dispatch({type:"upload",progress:value,})
+                },
+                (error)=>{
+                    console.log(error)
+                },
+                ()=>{
+                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                        setImageUrl(downloadURL);    
+                    });
+                }
+            )
+        }
+        image && updateImage();
+
+    },[image])
 
 
     return ( 
@@ -64,12 +137,12 @@ const Detail = () => {
                                 <div className="mb-3 single-input">
                                     <label htmlFor="file" className="form-label">Image</label>
                                     <input type="file" className="form-control" id="file"
-                                    onChange={(e)=>setImage(e.target.value)}
+                                    onChange={(e)=>setImage(e.target.files[0])}
                                     />
                                 </div>
 
                                 <div className=" mb-3 single-input img-progress">
-                                        <progress value={20} max="100"></progress>
+                                        <progress value={state.progress} max="100"></progress>
                                 </div>
                                 <div className="btn-container">
                                     <button className='btn btn-primary detail-button'

@@ -7,7 +7,6 @@ import { useState } from 'react';
 import { useError } from '../../context/ErrorContext';
 import {auth} from '../../firebase/Firebase'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
-import { useAuth } from '../../context/AuthContext';
 import { db } from '../../firebase/Firebase';
 import {doc,setDoc} from 'firebase/firestore'
 
@@ -24,7 +23,7 @@ const Register = () => {
     const saveUser=async(currentUser)=>{
         try{
             console.log(currentUser.uid+"cat fish");
-            const response=await setDoc(doc(db,"user",currentUser.uid),{
+            await setDoc(doc(db,"user",currentUser.uid),{
                 uid:currentUser.uid,
                 email:currentUser.email,
                 name:currentUser.displayName,
