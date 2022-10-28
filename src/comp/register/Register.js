@@ -5,8 +5,11 @@ import {FcGoogle} from 'react-icons/fc'
 import {TfiTwitter} from 'react-icons/tfi'
 import { useState } from 'react';
 import { useError } from '../../context/ErrorContext';
-import {auth, db} from '../../firebase/Firebase'
+import {auth} from '../../firebase/Firebase'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
+import { useAuth } from '../../context/AuthContext';
+import { db } from '../../firebase/Firebase';
+import {doc,setDoc} from 'firebase/firestore'
 
 
 
@@ -14,15 +17,21 @@ const Register = () => {
 
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
-    const {getError,err}=useError();
+    const {getError}=useError();
     const navigate=useNavigate();
 
-    const createUser=async()=>{
+
+    const saveUser=async(currentUser)=>{
         try{
-            const response=await createUserWithEmailAndPassword(auth,email,password);
-            console.log(response.user.uid);
-            navigate('/detail');
+            console.log(currentUser.uid+"cat fish");
+            const response=await setDoc(doc(db,"user",currentUser.uid),{
+                uid:currentUser.uid,
+                email:currentUser.email,
+                name:currentUser.displayName,
+                photoURL:currentUser.photoURL
+            });
         }catch(err){
+            console.log(err.message);
             getError(err.message);
             navigate('/error');
         }
@@ -32,7 +41,9 @@ const Register = () => {
     const handleSubmit=async(e)=>{
         e.preventDefault();         
         try{
-            await createUser();
+            const response=await createUserWithEmailAndPassword(auth,email,password);
+            await saveUser(response.user);
+            navigate('/detail');
         }catch(err){
             console.log(err.message);
             getError(err.message);
@@ -45,6 +56,7 @@ const Register = () => {
     const popupLogin=async()=>{
         try{
             const response=await signInWithPopup(auth,provider);
+            await saveUser(response.user);
             console.log(response.user.uid);
             navigate('/home')
         }catch(err){
