@@ -1,0 +1,275 @@
+
+:root{
+    --head-color:#f7f3ff;
+    --main-color:#ffffff;
+    --body-color:#fee0fe;
+    --text-sender:#9766ff;
+    --text-reciver:#f9f6ff;
+    --text-input:#eeeeee;
+}
+.main{
+   min-height: 100vh;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   background-color: var(--body-color);
+}
+
+
+
+.main ::-webkit-scrollbar {
+    display: none;
+  }
+
+.main .main-box{
+    display: flex;
+    width: 100%;
+    height: 83vh;
+    border-radius: 1em;
+    overflow: hidden;
+    margin: 0em 14em !important;
+    padding: 0 !important;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.main .contact-box{
+    background-color: var(--main-color);
+    width: 450px;
+    height: 100%;
+    padding: 1em;
+
+}
+
+
+
+.main .contact-box img{
+    width: 80px;
+    height: 80px;
+    border-radius: 45px;
+
+}
+
+.main .contact-head{
+    margin-bottom: 1.6em;
+}
+
+.main .contact-head .box{
+    background-color: var(--head-color);
+    padding: 1em;
+    display: flex;
+    column-gap: 1em;
+    border-radius: 0.6em;
+    justify-content: center;
+}
+
+.main .contact-head .box input{
+    width: 80%;
+    outline: none;
+    border: none;
+    background-color: var(--head-color);
+
+}
+
+.main .contact-detail{
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.3em;
+    height: 70vh;
+    overflow-y:scroll;
+
+}
+.main .single-contact{
+    display: flex;
+    column-gap: 1em;
+    background-color: var(--main-color);
+    box-shadow:rgba(60, 64, 67, 0.2) 0px 1px 3px 1px;
+    border: 0.5px solid rgb(199, 197, 197);
+    border-radius: 0.6em;
+    padding: 1.38em 3em;
+
+}
+
+.main .single-contact .text-detail{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em;
+    justify-content: center;
+}
+
+.main .single-contact h3{
+    font-weight: 600;
+    font-size: 1.3em;
+    color: black;
+}
+
+
+.main .single-contact h4{
+    font-size: 400;
+    font-size: 0.9em;
+    color: black;
+}
+
+.main .chat-box{
+    width: calc(100% - 450px);
+    background-color: var(--main-color);
+    padding: 0em 1em;
+}
+
+
+.main .box-right{
+    padding: 1em;
+}
+
+.main .chat-head{
+    padding: 0.6em 1em;
+    background-color: var(--head-color);
+    border-radius: 0.6em;
+}
+
+.main .chat-box .img-box{
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.main .chat-box img{
+    width: 35px;
+    height: 35px;
+    border-radius: 20px;
+}
+
+.main .chat-head .box-message{
+    display:flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    vertical-align: middle;
+    padding: 0em 0.5em;
+
+}
+
+.main .box-message h3{
+    font-size: 1em;
+    font-weight: bolder;
+    padding-top: 0.4em;
+}
+
+.main .chat-head .icon-box{
+    display: flex;  
+    align-items: center;
+}
+
+.main .message-box{
+    overflow: hidden;
+    overflow-y: scroll;
+    height: 63vh;
+    margin-top: 1.69em;
+    display: flex;
+    flex-direction: column-reverse;
+    row-gap: 0.5em;
+}
+
+.main .message img{
+    width: 150px;
+    height: 100px;
+    padding: 0em 0.4em;
+
+}
+
+.main .message{
+    padding: 0.5em  1.5em;
+    display: flex;
+    flex-direction: column;
+    row-gap: 0.5em;
+}
+
+.main .message-image{
+    display: block;
+    column-gap: 1em;
+    padding: 0.5em 0em;
+}
+
+.main .text-container{
+    display: flex;
+    width: 50%;
+    padding:0.4em 1em;
+    justify-content: flex-start;
+    align-items: center;
+    border-radius: 0.5em;
+
+}
+
+.main p{
+    padding: 0px;
+    margin: 0px;
+}
+
+
+
+.main .sender{
+    text-align: end;
+    align-items: flex-end;
+}
+
+.main .text-sender{
+    background-color: var(--text-sender);
+}
+
+.main .text-reciver{
+    background-color: var(--text-reciver);
+}
+
+.main .reciver{
+    text-align: start;
+    align-items: flex-start;
+
+}
+
+.main .message-input{
+    display: flex;
+    padding:0.7em 0.5em;
+    justify-content: space-between;
+
+}
+
+.main .message-emoji{
+    background-color: var(--main-color);
+    width: 7.5%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.main .text-input{
+    background-color: var(--text-input);
+    width: 80%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 90%;
+    padding: 0.5em;
+    border-radius: 0.5em;
+
+}
+
+.main .image-input{
+    width: 7.5%;
+    background-color: var(--main-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+   
+}
+
+.main .chat-box input{
+    width: 90%;
+    outline: none;
+    border: none;
+    background-color: var(--text-input);
+}
+
+.main .chat-box .text-input label{
+    background-color: 8%;
+}
+
+
+

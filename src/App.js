@@ -1,10 +1,13 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import '../src/comp/login/login.css'
 import '../src/comp/register/register.css'
 import '../src/comp/reset/reset.css'
 import './index.css'
 import '../src/comp/login/login.css'
 import '../src/comp/detail/detail.css'
-import 'bootstrap/dist/css/bootstrap.min.css';
+import '../src/comp/main/main.css'
+import 'bootstrap/dist/js/bootstrap.js';
+
 
 
 
