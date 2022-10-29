@@ -1,7 +1,4 @@
-.detail .img-progress{
-    display: flex;
-    
-}
+
 
 .detail progress{
     width: 50%;
@@ -104,6 +101,27 @@
     margin-top: 1.5em;
     display: flex;
     justify-content: space-between;
+}
+
+.detail .img-progress{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.detail .img-progress progress{
+    height: 1.5em;
+}
+
+.detail .img-progress button{
+    outline: none;
+    border: none;
+    background-color: white;
+    border-radius: .5em;
+}
+
+.detail .img-progress button:hover{
+    background: #F2F2F2;
 }
 
 

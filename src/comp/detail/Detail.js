@@ -82,34 +82,43 @@ const Detail = () => {
 
     }
 
-    const handleSkip=()=>{
+    const handleSkip=(e)=>{
+        e.preventDefault();
         navigate('/home');
     }
 
+    const removeImage=async(e)=>{
+        e.preventDefault();
+        setImage(null);
+        setImageUrl(null);
+        dispatch({type:"upload",progress:0})
+    }
 
-    useEffect(()=>{
-        const updateImage=async()=>{
-            const imageRef=ref(storage,`images/${currentUser.uid}`);
-            const uploadTask = uploadBytesResumable(imageRef,image);
+    
 
-            uploadTask.on('state_changed',
-                (snapshot)=>{
-                    const value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-                    dispatch({type:"upload",progress:value,})
-                },
-                (error)=>{
-                    console.log(error)
-                },
-                ()=>{
-                    getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
-                        setImageUrl(downloadURL);    
-                    });
-                }
-            )
-        }
-        image && updateImage();
 
-    },[image])
+    const updateImage=async(e)=>{
+        e.preventDefault();
+        console.log(image.name);
+        const imageRef=ref(storage,`images/${currentUser.uid+image.name}`);
+        const uploadTask = uploadBytesResumable(imageRef,image);
+
+        uploadTask.on('state_changed',
+            (snapshot)=>{
+                const value = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                dispatch({type:"upload",progress:value,})
+            },
+            (error)=>{
+                console.log(error)
+            },
+            ()=>{
+                getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+                    setImageUrl(downloadURL);    
+                });
+            }
+        )
+    }
+
 
 
     return ( 
@@ -137,12 +146,21 @@ const Detail = () => {
                                 <div className="mb-3 single-input">
                                     <label htmlFor="file" className="form-label">Image</label>
                                     <input type="file" className="form-control" id="file"
+                                    accept="image/x-png,image/gif,image/jpeg"
                                     onChange={(e)=>setImage(e.target.files[0])}
                                     />
                                 </div>
 
-                                <div className=" mb-3 single-input img-progress">
+                                <div className=" mb-3  img-progress ">
                                         <progress value={state.progress} max="100"></progress>
+                                        <span>
+                                            <button
+                                            onClick={updateImage}
+                                            >&#x2713;</button>
+                                            <button
+                                            onClick={removeImage}
+                                            >&#x2717;</button>
+                                        </span>
                                 </div>
                                 <div className="btn-container">
                                     <button className='btn btn-primary detail-button'
