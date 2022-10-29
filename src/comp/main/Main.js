@@ -4,6 +4,7 @@ import {BsFillEmojiHeartEyesFill} from 'react-icons/bs'
 import {FiSend} from 'react-icons/fi'
 import {RiSendToBack} from 'react-icons/ri'
 
+
 const Main = () => {
     return ( 
         <section className="main">

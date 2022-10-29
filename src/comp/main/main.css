@@ -82,10 +82,16 @@
     column-gap: 1em;
     background-color: var(--main-color);
     box-shadow:rgba(60, 64, 67, 0.2) 0px 1px 3px 1px;
-    border: 0.5px solid rgb(199, 197, 197);
+    border: 0.5px solid #f3f1f1;
     border-radius: 0.6em;
     padding: 1.38em 3em;
+    color: black;
 
+}
+
+.main .single-contact:hover{
+    background-color: var(--text-sender);
+    color: white;
 }
 
 .main .single-contact .text-detail{
@@ -95,23 +101,23 @@
     justify-content: center;
 }
 
+
+
 .main .single-contact h3{
     font-weight: 600;
     font-size: 1.3em;
-    color: black;
 }
 
 
 .main .single-contact h4{
     font-size: 400;
     font-size: 0.9em;
-    color: black;
 }
 
 .main .chat-box{
     width: calc(100% - 450px);
     background-color: var(--main-color);
-    padding: 0em 1em;
+    padding: 0.1em 1em;
 }
 
 
@@ -213,10 +219,12 @@
 
 .main .text-sender{
     background-color: var(--text-sender);
+    color:white;
 }
 
 .main .text-reciver{
     background-color: var(--text-reciver);
+    color: black;
 }
 
 .main .reciver{
