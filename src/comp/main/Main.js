@@ -290,6 +290,7 @@ const Main = () => {
                                     <label htmlFor="image">
                                         <RiSendToBack/>
                                     </label>
+                                    <input className='custom-input'  id='image' type="file" />
                                 </div>
                             </div>
                         </div>
