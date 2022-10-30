@@ -15,6 +15,34 @@ const Oauth2 = () => {
     const navigate=useNavigate();
     const {getError} =useError();
 
+    const checkUserInChat=async(currentUser)=>{
+        try{
+            const response=await getDoc(doc(db,"chatUser",currentUser.uid))
+            if(response.exists()){
+                return true;
+            }
+            return false;
+        }catch(err){
+            getError(err.message);
+            console.log(err)
+        }
+    }
+
+    const createContactList=async(currentUser)=>{
+        try{
+            const check=await checkUserInChat(currentUser);
+            if(check){
+                return;
+            }
+            console.log("gelly fish");
+            await setDoc(doc(db,"chatUser",currentUser.uid),{});
+        }catch(err){
+            getError(err.message);
+        }
+
+    }
+
+
 
     const checkTheUser=async(currentUser)=>{
         try{
@@ -56,6 +84,7 @@ const Oauth2 = () => {
             const response=await signInWithPopup(auth,provider);
             await saveUser(response.user);
             console.log(response.user.uid);
+            await createContactList(response.user);
             navigate('/home')
         }catch(err){
             console.log(err.message);

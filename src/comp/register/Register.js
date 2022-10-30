@@ -1,4 +1,3 @@
-import register from '../../assets/register.jpg'
 import './register.css'
 import { Link, useNavigate } from 'react-router-dom';
 import {FcGoogle} from 'react-icons/fc'
@@ -8,7 +7,9 @@ import { useError } from '../../context/ErrorContext';
 import {auth} from '../../firebase/Firebase'
 import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } from 'firebase/auth';
 import { db } from '../../firebase/Firebase';
-import {doc,setDoc} from 'firebase/firestore'
+import {doc,setDoc,getDoc} from 'firebase/firestore'
+import Head from '../login/component/Head'
+
 
 
 
@@ -18,6 +19,32 @@ const Register = () => {
     const [password,setPassword]=useState("");
     const {getError}=useError();
     const navigate=useNavigate();
+
+    const checkUserInChat=async(currentUser)=>{
+        try{
+            const response=await getDoc(doc(db,"chatUser",currentUser.uid))
+            if(response.exists()){
+                return true;
+            }
+            return false;
+        }catch(err){
+            getError(err.message);
+            console.log(err)
+        }
+    }
+
+
+    const createContactList=async(currentUser)=>{
+        try{
+            const check=await checkUserInChat(currentUser);
+            if(check)return;
+            console.log("gelly fish");
+            await setDoc(doc(db,"chatUser",currentUser.uid),{});
+        }catch(err){
+            getError(err.message);
+        }
+
+    }
 
 
     const saveUser=async(currentUser)=>{
@@ -42,6 +69,7 @@ const Register = () => {
         try{
             const response=await createUserWithEmailAndPassword(auth,email,password);
             await saveUser(response.user);
+            await createContactList(response.user);
             navigate('/detail');
         }catch(err){
             console.log(err.message);
@@ -56,6 +84,7 @@ const Register = () => {
         try{
             const response=await signInWithPopup(auth,provider);
             await saveUser(response.user);
+            await createContactList(response.user);
             console.log(response.user.uid);
             navigate('/home')
         }catch(err){
@@ -69,9 +98,7 @@ const Register = () => {
     return ( 
         <section className="register container-fluid">
             <div className="register-page row">
-                <div className="img-container  bg-danger col-3">
-                    <img  src={register} alt="register" className='img-fluid' />
-                </div>
+               <Head/>
                 <div className="register-input col-7">
                     <div className="input-container">
                         <div className="input-head ">

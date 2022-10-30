@@ -246,7 +246,7 @@ const Main = () => {
                                 </div>
                             </div>
                             <div className="message reciever">
-                                <div className="text-container">
+                                <div className="text-container text-reciver">
                                     <p>hello world how are you please contact me</p>
                                 </div>
                                 <div className="message-image reciever">
@@ -259,19 +259,18 @@ const Main = () => {
                                 </div>
                             </div>
                             <div className="message sender">
-                                <div className="text-container">
-                                    <p>hello world how are you please contact me</p>
-                                </div>
                                 <div className="message-image">
-                                    <img src="" alt="message" />
+                                    <img src={pr} alt="message" />
+                                    <img src={pr} alt="message" />
                                 </div>
                             </div>
                             <div className="message sender">
-                                <div className="text-container">
+                                <div className="text-container text-sender">
                                     <p>hello world how are you please contact me</p>
                                 </div>
                                 <div className="message-image">
-                                    <img src="" alt="message" />
+                                    <img src={pr} alt="message" />
+                                    <img src={pr} alt="message" />
                                 </div>
                             </div>
                         </div>
