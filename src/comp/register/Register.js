@@ -50,11 +50,21 @@ const Register = () => {
     const saveUser=async(currentUser)=>{
         try{
             console.log(currentUser.uid+"cat fish");
+            console.log(currentUser.photoURL);
+            let photoURL=null;
+            let displayName="unknown";
+            if(currentUser.photoURL){
+                photoURL=currentUser.photoURL;
+            }
+
+            if(currentUser.displayName){
+                displayName=currentUser.displayName.toLowerCase();
+            }
             await setDoc(doc(db,"user",currentUser.uid),{
                 uid:currentUser.uid,
                 email:currentUser.email,
-                name:currentUser.displayName,
-                photoURL:currentUser.photoURL
+                name:displayName,
+                photoURL
             });
         }catch(err){
             console.log(err.message);

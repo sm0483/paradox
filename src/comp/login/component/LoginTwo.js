@@ -63,12 +63,20 @@ const Oauth2 = () => {
         try{
             const check=await checkTheUser(currentUser);
             if(check) return;
-            console.log(currentUser.uid+"cat fish");
+            let photoURL=null;
+            let displayName="unknown";
+            if(currentUser.photoURL){
+                photoURL=currentUser.photoURL;
+            }
+
+            if(currentUser.displayName){
+                displayName=currentUser.displayName.toLowerCase();
+            }
             await setDoc(doc(db,"user",currentUser.uid),{
                 uid:currentUser.uid,
                 email:currentUser.email,
-                name:currentUser.displayName,
-                photoURL:currentUser.photoURL
+                name:displayName,
+                photoURL
             });
         }catch(err){
             console.log(err.message);

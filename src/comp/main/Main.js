@@ -1,44 +1,31 @@
-import {BsSearch} from 'react-icons/bs';
 import pr from '../../assets/login.jpg'
 import {BsFillEmojiHeartEyesFill} from 'react-icons/bs'
 import {FiSend} from 'react-icons/fi'
 import {RiSendToBack} from 'react-icons/ri'
+import Head from './components/Head';
+import Search from './components/Search';
+import { useState } from 'react';
+import Result from './components/Result';
 
 
 const Main = () => {
+    const [result,setResult]=useState([]);
+
     return ( 
         <section className="main">
             <div className="container-fluid main-box">
-
                 {/* contact-box */}
                 <div className="contact-box">
                     <div className="box-left">
                         {/* contact-head */}
-                        <div className="contact-head">
-                            <div className="box">
-                                <label htmlFor="search"><BsSearch/></label>
-                                <input type="text" placeholder='Search user'/>
-                            </div>
-                        </div>
+                         <Search setResult={setResult}/>
                         {/* contact-head */}
 
                         <div className="contact-list">
                             <div className="contact-detail">
-                                {/* single-contact */}
-                                <div className="single-contact">
-                                    <div className="image-conatiner">
-                                        <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you cat fish fry?
-                                        </h4>
-                                    </div>
-                                </div>
-                                {/* single-contact */}
+                                {/* Result-search */}
+                                <Result result={result}/>
+                                {/* Result-search */}
                                 {/* single-contact */}
                                 <div className="single-contact">
                                     <div className="image-conatiner">
@@ -198,28 +185,9 @@ const Main = () => {
                 {/* chat-box */}
                 <div className="chat-box ">
                     <div className="box-right">
-                        <div className="chat-head">
-                            <div className="box-message">
-                                <h3>Jhone king</h3>
-                                {/* icon-box */}
-                                <div className="icon-box">
-                                    <div className="img-box">
-                                        <img src={pr} alt="user face"/>
-                                    </div>
-                                    {/* drop-down */}
-                                    <div class="dropdown">
-                                        <button class="btn" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-                                            &#10247;
-                                        </button>
-                                        <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                            <li><button class="dropdown-item">Logout</button></li>
-                                        </ul>
-                                    </div>
-                                  {/* drop-down */}
-                                </div>
-                                {/* icon-box */}
-                            </div>
-                        </div>
+                        {/* chat-head */}
+                        <Head/>
+                        {/* chat-head */}
                         <div className="message-box">
                             <div className="message sender">
                                 <div className="text-container text-sender">

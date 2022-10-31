@@ -14,7 +14,8 @@ const EmailLogin = () => {
     const signIn=async(e)=>{
         e.preventDefault();         
         try{
-            const response=signInWithEmailAndPassword(auth,email,password);
+            const response=await signInWithEmailAndPassword(auth,email,password);
+            console.log(response);
             navigate('/home');
         }catch(err){
             getError(err.message);
