@@ -1,12 +1,56 @@
 import profile from '../../../assets/pr.png'
+import {db} from '../../../firebase/Firebase'
+import {doc,serverTimestamp,updateDoc} from 'firebase/firestore'
+import {useAuth} from '../../../context/AuthContext';
+import { useError } from '../../../context/ErrorContext';
+import { useState } from 'react';
+
 
 const Result = ({result}) => {
-    if(result.length!==0){
+    const {currentUser}=useAuth();
+    const {getError} =useError();
+    const [remove,setRemove]=useState(false);
+
+    const createContact=async(reciverData)=>{
+        let combId=undefined;
+        const {name,photoURL,uid:reciverId}=reciverData;
+        if(currentUser.uid>reciverId){
+            combId=currentUser.uid+reciverId;
+        }else{
+            combId=reciverId+currentUser.uid
+        }
+        try{
+            await updateDoc(doc(db,"chatUser",currentUser.uid),{
+                [combId+"userInfo"]:{
+                    name,
+                    uid:reciverId,
+                    photoURL
+                },
+                [combId+"date"]:serverTimestamp()
+
+            });
+            await updateDoc(doc(db,"chatUser",reciverId),{
+                [combId+"userInfo"]:{
+                    name:currentUser.displayName,
+                    uid:currentUser.uid,
+                    photoURL:currentUser.photoURL
+                },
+                [combId+"date"]:serverTimestamp()
+
+            });
+            setRemove(!remove);
+        }catch(err){
+            console.log(err.message);
+            getError(err.message);
+        }
+    }
+    if(result.length!==0 && !remove){
         return(
             result.map((data)=>{
                 const {name,photoURL,uid}=data;
+                console.log(data);
                 return ( 
-                    <div className="single-contact" key={uid}>
+                    <div className="single-contact" key={uid} onClick={()=>createContact(data)}>
                         <div className="image-conatiner">
                             <img src={photoURL ? photoURL :profile} alt="user face" />
                         </div>
