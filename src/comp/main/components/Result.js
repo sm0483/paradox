@@ -1,6 +1,6 @@
 import profile from '../../../assets/pr.png'
 import {db} from '../../../firebase/Firebase'
-import {doc,serverTimestamp,updateDoc} from 'firebase/firestore'
+import {doc,serverTimestamp,updateDoc,setDoc,getDoc} from 'firebase/firestore'
 import {useAuth} from '../../../context/AuthContext';
 import { useError } from '../../../context/ErrorContext';
 import { useState } from 'react';
@@ -20,22 +20,30 @@ const Result = ({result}) => {
             combId=reciverId+currentUser.uid
         }
         try{
+
+
+            const chatRef=doc(db,"chat",combId);
+            const res=await getDoc(chatRef);
+            if(!res.exists()){
+                await setDoc(chatRef,{message:[]});
+            }
+
             await updateDoc(doc(db,"chatUser",currentUser.uid),{
-                [combId+"userInfo"]:{
+                [combId+".userInfo"]:{
                     name,
                     uid:reciverId,
                     photoURL
                 },
-                [combId+"date"]:serverTimestamp()
+                [combId+".date"]:serverTimestamp()
 
             });
             await updateDoc(doc(db,"chatUser",reciverId),{
-                [combId+"userInfo"]:{
+                [combId+".userInfo"]:{
                     name:currentUser.displayName,
                     uid:currentUser.uid,
                     photoURL:currentUser.photoURL
                 },
-                [combId+"date"]:serverTimestamp()
+                [combId+".date"]:serverTimestamp()
 
             });
             setRemove(!remove);

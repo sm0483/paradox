@@ -6,6 +6,7 @@ import Head from './components/Head';
 import Search from './components/Search';
 import { useState } from 'react';
 import Result from './components/Result';
+import Contact from './components/Contact';
 
 
 const Main = () => {
@@ -27,20 +28,8 @@ const Main = () => {
                                 <Result result={result}/>
                                 {/* Result-search */}
                                 {/* single-contact */}
-                                <div className="single-contact">
-                                    <div className="image-conatiner">
-                                        <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you?
-                                        </h4>
-                                    </div>
-                                </div>
                                 {/* single-contact */}
+                                <Contact/>
                                 {/* single-contact */}
                                 <div className="single-contact">
                                     <div className="image-conatiner">
