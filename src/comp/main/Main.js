@@ -1,16 +1,17 @@
 import pr from '../../assets/login.jpg'
-import {BsFillEmojiHeartEyesFill} from 'react-icons/bs'
-import {FiSend} from 'react-icons/fi'
-import {RiSendToBack} from 'react-icons/ri'
 import Head from './components/Head';
 import Search from './components/Search';
 import { useState } from 'react';
 import Result from './components/Result';
 import Contact from './components/Contact';
+import Chat from './components/Chats';
+import Input from './components/Input';
 
 
 const Main = () => {
     const [result,setResult]=useState([]);
+    const [combId,setCombid]=useState(null);
+
 
     return ( 
         <section className="main">
@@ -29,142 +30,9 @@ const Main = () => {
                                 {/* Result-search */}
                                 {/* single-contact */}
                                 {/* single-contact */}
-                                <Contact/>
+                                <Contact setCombid={setCombid}/>
                                 {/* single-contact */}
-                                <div className="single-contact">
-                                    <div className="image-conatiner">
-                                        <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you?
-                                        </h4>
-                                    </div>
-                                </div>
-                                {/* single-contact */} 
-                                {/* single-contact */}
-                                <div className="single-contact">
-                                    <div className="image-conatiner">
-                                        <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you?
-                                        </h4>
-                                    </div>
-                                </div>
-                                {/* single-contact */}
-                                {/* single-contact */}
-                                 <div className="single-contact">
-                                    <div className="image-conatiner">
-                                        <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you?
-                                        </h4>
-                                    </div>
-                                </div>
-                                {/* single-contact */}   
-                                {/* single-contact */}
-                                <div className="single-contact">
-                                    <div className="image-conatiner">
-                                        <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you?
-                                        </h4>
-                                    </div>
-                                </div>
-                                {/* single-contact */}
-                                {/* single-contact */}
-                                <div className="single-contact">
-                                    <div className="image-conatiner">
-                                    <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you?
-                                        </h4>
-                                    </div>
-                                </div>
-                                {/* single-contact */}
-                                {/* single-contact */}
-                                <div className="single-contact">
-                                    <div className="image-conatiner">
-                                        <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you?
-                                        </h4>
-                                    </div>
-                                </div>
-                                {/* single-contact */}
-                                {/* single-contact */}
-                                <div className="single-contact">
-                                    <div className="image-conatiner">
-                                        <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you?
-                                        </h4>
-                                    </div>
-                                </div>
-                                {/* single-contact */}
-                                {/* single-contact */}
-                                <div className="single-contact">
-                                    <div className="image-conatiner">
-                                        <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you?
-                                        </h4>
-                                    </div>
-                                </div>
-                                {/* single-contact */}
-                                {/* single-contact */}
-                                <div className="single-contact">
-                                    <div className="image-conatiner">
-                                        <img src={pr} alt="user face" />
-                                    </div>
-                                    <div className="text-detail">
-                                        <h3 className="name">
-                                            Ravi
-                                        </h3>
-                                        <h4 className="last-message">
-                                            how are you?
-                                        </h4>
-                                    </div>
-                                </div>
-                                {/* single-contact */}
+                            
                             </div>
                         </div>
                     </div>
@@ -177,78 +45,12 @@ const Main = () => {
                         {/* chat-head */}
                         <Head/>
                         {/* chat-head */}
-                        <div className="message-box">
-                            <div className="message sender">
-                                <div className="text-container text-sender">
-                                    <p>hello world how are you please contact me</p>
-                                </div>
-                                <div className="message-image sender">
-                                    <img src={pr} alt="message" />
-                                    <img src={pr} alt="message" />
-                                </div>
-                            </div>
-                            <div className="message reciver">
-                                <div className="text-container text-reciver">
-                                    <p>hello world how are you please contact me cat fish jelly fish 
-                                        crake fih chat pic
-                                    </p>
-                                </div>
-                            </div>
-                            <div className="message sender">
-                                <div className="text-container text-sender">
-                                    <p>hello world how are you please contact me</p>
-                                </div>
-                                <div className="message-image sender">
-                                    <img src={pr} alt="message" />
-                                </div>
-                            </div>
-                            <div className="message reciever">
-                                <div className="text-container text-reciver">
-                                    <p>hello world how are you please contact me</p>
-                                </div>
-                                <div className="message-image reciever">
-                                    <img src={pr} alt="message" />
-                                </div>
-                            </div>
-                            <div className="message sender">
-                                <div className="message-image">
-                                    <img src={pr} alt="message" />
-                                </div>
-                            </div>
-                            <div className="message sender">
-                                <div className="message-image">
-                                    <img src={pr} alt="message" />
-                                    <img src={pr} alt="message" />
-                                </div>
-                            </div>
-                            <div className="message sender">
-                                <div className="text-container text-sender">
-                                    <p>hello world how are you please contact me</p>
-                                </div>
-                                <div className="message-image">
-                                    <img src={pr} alt="message" />
-                                    <img src={pr} alt="message" />
-                                </div>
-                            </div>
-                        </div>
+                        {/* message-box */}
+                        <Chat combId={combId}/>
+                        {/* message-box */}
+
                         <div className="message-input-container">
-                            <div className="message-input">
-                                <i className="message-emoji">
-                                    <BsFillEmojiHeartEyesFill/>
-                                </i>
-                                <div className="text-input">
-                                    <input type="text" id='message' placeholder='write you message'/>
-                                    <label htmlFor="message">
-                                        <FiSend/>
-                                    </label>
-                                </div>
-                                <div className="image-input">
-                                    <label htmlFor="image">
-                                        <RiSendToBack/>
-                                    </label>
-                                    <input className='custom-input'  id='image' type="file" />
-                                </div>
-                            </div>
+                            <Input/>
                         </div>
                     </div>
                 </div>

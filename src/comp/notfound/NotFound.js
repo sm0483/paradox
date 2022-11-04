@@ -1,8 +1,7 @@
-import EmojiPicker from 'emoji-picker-react';
 const NotFound = () => {
     return ( 
         <section className="not-found">
-            <EmojiPicker />
+            <h3>404</h3>
         </section>
      );
 }

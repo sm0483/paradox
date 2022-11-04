@@ -25,6 +25,7 @@ import Detail from './comp/detail/Detail'
 import Reset from './comp/reset/Reset'
 import NotFound from './comp/notfound/NotFound'
 import { useAuth } from './context/AuthContext'
+import { ChatProvider } from './context/ChatContext';
 
 const RequireAuth=({children})=>{
     const {currentUser}=useAuth();
@@ -47,7 +48,9 @@ function App() {
           <Route path='/error' element={<Error/>}/>
           <Route path='/home' element={
             <RequireAuth>
-              <Main/>
+              <ChatProvider>
+                <Main/>
+              </ChatProvider>
             </RequireAuth>
           }/>
           <Route path='/detail' element={
