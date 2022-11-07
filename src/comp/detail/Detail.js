@@ -47,8 +47,12 @@ const Detail = () => {
     const uploadDataDb=async()=>{
         try{
             console.log(currentUser.uid+"fish");
+            let displayName=undefined;
+            if(name){
+                displayName=name.toLowerCase();
+            }
             await updateDoc(doc(db,"user",currentUser.uid),{
-                name,
+                name:displayName,
                 photoURL:imageUrl
             });
         }catch(err){

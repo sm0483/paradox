@@ -10,7 +10,7 @@ const Contact = ({setCombid}) => {
     const {currentUser}=useAuth();
     const [contactList,setContactList]=useState({});
     const {dispatch}=useChat();
-
+    const [selectedId,setSelectedId]=useState(null);
     useEffect(()=>{
         let unsub=()=>{};
         const getData=()=>{
@@ -29,7 +29,8 @@ const Contact = ({setCombid}) => {
 
     const setupChatId=(combId)=>{
         dispatch({type:"upload",combId:combId});
-        setCombid(combId)
+        setCombid(combId);
+        setSelectedId(combId);
     }
 
 
@@ -40,7 +41,7 @@ const Contact = ({setCombid}) => {
                 if(value && Object.keys(value).length!==0){
                     const {name,photoURL,uid}=value.userInfo;
                     return(
-                        <div className="single-contact" key={key} onClick={()=>setupChatId(key)}>
+                        <div className={`single-contact ${key===selectedId && "click"}`} key={key} onClick={()=>setupChatId(key)}>
                         <div className="image-conatiner">
                             <img src={photoURL ? photoURL:pr} alt="user face" />
                         </div>
@@ -49,7 +50,7 @@ const Contact = ({setCombid}) => {
                                 {name}
                             </h3>
                             <h4 className="last-message">
-                                how are you?
+                                how are you guys?
                             </h4>
                         </div>
                     </div>

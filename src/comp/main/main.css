@@ -89,6 +89,11 @@
 
 }
 
+.main .click{
+    background-color: var(--text-sender);
+    color: white;
+}
+
 .main .single-contact:hover{
     background-color: var(--text-sender);
     color: white;
@@ -106,12 +111,13 @@
 .main .single-contact h3{
     font-weight: 600;
     font-size: 1.3em;
+    text-transform: capitalize;
 }
 
 
 .main .single-contact h4{
-    font-size: 400;
-    font-size: 0.9em;
+    font-size: 1em;
+    font-weight: 600;
 }
 
 .main .chat-box{
@@ -155,9 +161,10 @@
 }
 
 .main .box-message h3{
-    font-size: 1em;
-    font-weight: bolder;
-    padding-top: 0.4em;
+    font-size: 1.02em;
+    font-weight: 700;
+    padding-top: 0.35em;
+    text-transform: capitalize;
 }
 
 .main .chat-head .icon-box{
@@ -167,13 +174,16 @@
 
 .main .message-box{
     overflow: hidden;
-    overflow-y: scroll;
+    overflow-y: auto;
     height: 63vh;
     margin-top: 1.69em;
     display: flex;
-    flex-direction: column-reverse;
+    flex-direction:column;
+    justify-content: flex-end;
     row-gap: 0.5em;
+    scroll-snap-type: y proximity;
 }
+
 
 .main .message img{
     width: 150px;

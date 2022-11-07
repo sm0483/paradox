@@ -13,6 +13,7 @@ const Search = ({setResult}) => {
             const parms=search.toLowerCase();
             const q=query(collection(db,"user"),where("name","==",parms));
             const response=await getDocs(q);
+            console.log(response.docs);
             if(response.docs.length!==0){
                 response.forEach((doc)=>{
                     resultArray.push(doc.data());
@@ -20,6 +21,7 @@ const Search = ({setResult}) => {
             }
 
             setResult(resultArray);
+            setSearch("");
         }
    
     }
