@@ -6,6 +6,7 @@ import Result from './components/Result';
 import Contact from './components/Contact';
 import Chat from './components/Chats';
 import Input from './components/Input';
+import { ContactProvider } from '../../context/ContactContext';
 
 
 const Main = () => {
@@ -14,6 +15,7 @@ const Main = () => {
 
 
     return ( 
+        <ContactProvider>
         <section className="main">
             <div className="container-fluid main-box">
                 {/* contact-box */}
@@ -57,6 +59,7 @@ const Main = () => {
                 {/* chat-box */}
             </div>
         </section>
+        </ContactProvider>
     );
 }
 

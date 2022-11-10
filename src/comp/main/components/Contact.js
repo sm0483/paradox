@@ -4,6 +4,7 @@ import { useEffect } from 'react';
 import pr from '../../../assets/login.jpg'
 import { useAuth } from '../../../context/AuthContext';
 import { useChat } from '../../../context/ChatContext';
+import { useContact } from '../../../context/ContactContext';
 import { auth, db } from '../../../firebase/Firebase';
 
 const Contact = ({setCombid}) => {
@@ -11,10 +12,11 @@ const Contact = ({setCombid}) => {
     const [contactList,setContactList]=useState({});
     const {dispatch}=useChat();
     const [selectedId,setSelectedId]=useState(null);
+    const {dispatch:conact,state}=useContact();
     useEffect(()=>{
         let unsub=()=>{};
         const getData=()=>{
-            console.log("cat ifhs");
+            console.log("reciver Message:"+state.reciver);
             unsub=onSnapshot(doc(db,"chatUser",currentUser.uid),(doc)=>{
                 console.log(doc.data());
                 setContactList(doc.data());
@@ -27,10 +29,11 @@ const Contact = ({setCombid}) => {
         }
     },[currentUser.uid])
 
-    const setupChatId=(combId)=>{
+    const setupChatId=(combId,uid)=>{
         dispatch({type:"upload",combId:combId});
         setCombid(combId);
         setSelectedId(combId);
+        conact({type:"change_user",sender:currentUser.uid,reciver:uid,combId:combId});
     }
 
 
@@ -39,9 +42,9 @@ const Contact = ({setCombid}) => {
         return (
             Object.entries(contactList).map(([key,value])=>{
                 if(value && Object.keys(value).length!==0){
-                    const {name,photoURL,uid}=value.userInfo;
+                    const {name,photoURL,uid,}=value.userInfo;
                     return(
-                        <div className={`single-contact ${key===selectedId && "click"}`} key={key} onClick={()=>setupChatId(key)}>
+                        <div className={`single-contact ${key===selectedId && "click"}`} key={key} onClick={()=>setupChatId(key,uid)}>
                         <div className="image-conatiner">
                             <img src={photoURL ? photoURL:pr} alt="user face" />
                         </div>
@@ -50,7 +53,7 @@ const Contact = ({setCombid}) => {
                                 {name}
                             </h3>
                             <h4 className="last-message">
-                                how are you guys?
+                                { (value && value.lastMessage) ? value.lastMessage :"No Message"}
                             </h4>
                         </div>
                     </div>

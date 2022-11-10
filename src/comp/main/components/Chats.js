@@ -16,7 +16,7 @@ const Chat = () => {
         let unsub=()=>{}
         const getChat=()=>{
             unsub=onSnapshot(doc(db,"chat",state.combId),(doc)=>{
-                console.log(doc.data());
+                // console.log(doc.data());
                 setChats(doc.data());
             })
 
@@ -33,9 +33,7 @@ const Chat = () => {
         <div className="message-box">
             {
                 chats && chats.message.map((chat)=>{
-                    console.log(chat)
                     const {id,message,senderId,type}=chat;
-                    console.log(message);
                     if(senderId===currentUser.uid){
                         return(
                             <Sender message={message} type={type} key={id}/>

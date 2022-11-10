@@ -32,18 +32,21 @@ const Result = ({result}) => {
                 [combId+".userInfo"]:{
                     name,
                     uid:reciverId,
-                    photoURL
+                    photoURL,
                 },
-                [combId+".date"]:serverTimestamp()
+                [combId+".date"]:serverTimestamp(),
+                [combId+".lastMessage"]:""
 
             });
             await updateDoc(doc(db,"chatUser",reciverId),{
                 [combId+".userInfo"]:{
                     name:currentUser.displayName,
                     uid:currentUser.uid,
-                    photoURL:currentUser.photoURL
+                    photoURL:currentUser.photoURL,
+                    lastMessage:""
                 },
-                [combId+".date"]:serverTimestamp()
+                [combId+".date"]:serverTimestamp(),
+                [combId+".lastMessage"]:""
 
             });
             setRemove(!remove);
