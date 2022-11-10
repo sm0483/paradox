@@ -104,7 +104,17 @@
     flex-direction: column;
     padding: 0.5em;
     justify-content: center;
+    padding-left: 1em;
+    row-gap: 0.35em;
+    width: 40%;
 }
+
+.main .date{
+    padding-top: 0.89em;
+    font-size: 0.9em;
+    font-weight: 400;
+}
+
 
 
 
@@ -117,7 +127,7 @@
 
 .main .single-contact h4{
     font-size: 1em;
-    font-weight: 600;
+    font-weight: 400;
 }
 
 .main .chat-box{
@@ -293,6 +303,7 @@
 .main .chat-box .text-input label{
     background-color: 8%;
 }
+
 
 
 

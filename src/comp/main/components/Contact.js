@@ -43,6 +43,11 @@ const Contact = ({setCombid}) => {
             Object.entries(contactList).map(([key,value])=>{
                 if(value && Object.keys(value).length!==0){
                     const {name,photoURL,uid,}=value.userInfo;
+                    let timeString=undefined;
+                    if(value.date){
+                        timeString=value.date.toDate().toLocaleTimeString();
+                    }
+                    console.log(timeString);
                     return(
                         <div className={`single-contact ${key===selectedId && "click"}`} key={key} onClick={()=>setupChatId(key,uid)}>
                         <div className="image-conatiner">
@@ -55,6 +60,9 @@ const Contact = ({setCombid}) => {
                             <h4 className="last-message">
                                 { (value && value.lastMessage) ? value.lastMessage :"No Message"}
                             </h4>
+                        </div>
+                        <div className="date"> 
+                            <h4>{ timeString && (timeString.substring(0,4)+" "+timeString.substring(8,10))}</h4>
                         </div>
                     </div>
                     )

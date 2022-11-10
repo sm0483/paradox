@@ -28,27 +28,32 @@ const Result = ({result}) => {
                 await setDoc(chatRef,{message:[]});
             }
 
-            await updateDoc(doc(db,"chatUser",currentUser.uid),{
-                [combId+".userInfo"]:{
-                    name,
-                    uid:reciverId,
-                    photoURL,
-                },
-                [combId+".date"]:serverTimestamp(),
-                [combId+".lastMessage"]:""
+            const chatUserRef=doc(db,"chatUser",currentUser.uid);
+            const check=await getDoc(chatUserRef);
 
-            });
-            await updateDoc(doc(db,"chatUser",reciverId),{
-                [combId+".userInfo"]:{
-                    name:currentUser.displayName,
-                    uid:currentUser.uid,
-                    photoURL:currentUser.photoURL,
-                    lastMessage:""
-                },
-                [combId+".date"]:serverTimestamp(),
-                [combId+".lastMessage"]:""
+            if(!check.exists()){
+                await updateDoc(doc(db,"chatUser",currentUser.uid),{
+                    [combId+".userInfo"]:{
+                        name,
+                        uid:reciverId,
+                        photoURL,
+                    },
+                    [combId+".date"]:serverTimestamp(),
+                    [combId+".lastMessage"]:""
 
-            });
+                });
+                await updateDoc(doc(db,"chatUser",reciverId),{
+                    [combId+".userInfo"]:{
+                        name:currentUser.displayName,
+                        uid:currentUser.uid,
+                        photoURL:currentUser.photoURL,
+                        lastMessage:""
+                    },
+                    [combId+".date"]:serverTimestamp(),
+                    [combId+".lastMessage"]:""
+
+                });
+        }
             setRemove(!remove);
         }catch(err){
             console.log(err.message);
