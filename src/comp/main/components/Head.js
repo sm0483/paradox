@@ -2,6 +2,7 @@ import pr from '../../../assets/pr.png'
 import {useAuth} from '../../../context/AuthContext'
 import { signOut } from 'firebase/auth';
 import { auth } from '../../../firebase/Firebase';
+import { Link } from 'react-router-dom';
 
 const Head = () => {
     const {currentUser}=useAuth();
@@ -25,6 +26,9 @@ const Head = () => {
                         <li><button className="dropdown-item"
                         onClick={()=>signOut(auth)}
                         >Logout</button></li>
+                        <li>
+                            <Link className='dropdown-item' to={'/detail'}>Edit</Link>
+                        </li>
                     </ul>
                 </div>
               {/* drop-down */}
