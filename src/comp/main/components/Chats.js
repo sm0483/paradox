@@ -6,11 +6,14 @@ import { db } from '../../../firebase/Firebase';
 import Reciver from './Reciver';
 import Sender from './Sender';
 import {useAuth} from '../../../context/AuthContext';
+import ImageLoad from './ImageLoad';
+import { useImage } from '../../../context/ImageContext';
 
 const Chat = () => {
     const [chats,setChats]=useState(null);
     const {state}=useChat();
     const {currentUser}=useAuth();
+    const {state:imageState}=useImage();
 
     useEffect(()=>{
         let unsub=()=>{}
@@ -45,8 +48,14 @@ const Chat = () => {
                     }
                   
                 })
+
             }
-         
+            {
+                imageState.loading && <ImageLoad value={imageState.completed}/>
+
+            }
+
+
         </div>
     );
 }

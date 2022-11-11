@@ -16,9 +16,7 @@ const Contact = ({setCombid}) => {
     useEffect(()=>{
         let unsub=()=>{};
         const getData=()=>{
-            console.log("reciver Message:"+state.reciver);
             unsub=onSnapshot(doc(db,"chatUser",currentUser.uid),(doc)=>{
-                console.log(doc.data());
                 setContactList(doc.data());
             })
         }
@@ -47,7 +45,6 @@ const Contact = ({setCombid}) => {
                     if(value.date){
                         timeString=value.date.toDate().toLocaleTimeString();
                     }
-                    console.log(timeString);
                     return(
                         <div className={`single-contact ${key===selectedId && "click"}`} key={key} onClick={()=>setupChatId(key,uid)}>
                         <div className="image-conatiner">

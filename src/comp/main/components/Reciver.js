@@ -16,8 +16,7 @@ const Reciver = ({message,type}) => {
             {
                 type==="image" &&
                 <div className="message-image reciver">
-                    <img src={pr} alt="message" />
-                    <img src={pr} alt="message" />
+                    <img src={message} alt={message} />
                 </div>
     
             }

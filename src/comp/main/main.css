@@ -66,7 +66,6 @@
     outline: none;
     border: none;
     background-color: var(--head-color);
-
 }
 
 .main .contact-detail{
@@ -86,6 +85,8 @@
     border-radius: 0.6em;
     padding: 1.38em 3em;
     color: black;
+    height: 20%;
+
 
 }
 
@@ -256,7 +257,8 @@
 .main .message-input{
     display: flex;
     padding:0.7em 0.5em;
-    justify-content: space-between;
+    column-gap: 1em;
+    justify-content: center;
 
 }
 
@@ -280,12 +282,14 @@
 }
 
 .main .image-input{
-    width: 7.5%;
+    width: 10%;
     background-color: var(--main-color);
     display: flex;
     justify-content: center;
     align-items: center;
-   
+    column-gap: 2em;
+    border-radius: 0.5em;
+    box-shadow: rgba(149, 157, 165, 0.15) 0px 8px 24px;
 }
 
 .main .image-input input{

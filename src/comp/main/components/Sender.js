@@ -1,9 +1,7 @@
 import pr from '../../../assets/login.jpg'
 
 
-{/* <div className="message-image">
-<progress value={20} max={100} />
-</div> */}
+
 
 const Sender = ({message,type}) => {
         return(
@@ -18,8 +16,7 @@ const Sender = ({message,type}) => {
                 {
                     type==="image" &&
                     <div className="message-image sender">
-                        <img src={pr} alt="message" />
-                        <img src={pr} alt="message" />
+                        <img src={message} alt="sender" />
                     </div>
 
                 }
