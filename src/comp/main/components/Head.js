@@ -23,12 +23,12 @@ const Head = () => {
                         &#10247;
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><button className="dropdown-item"
-                        onClick={()=>signOut(auth)}
-                        >Logout</button></li>
                         <li>
                             <Link className='dropdown-item' to={'/detail'}>Edit</Link>
                         </li>
+                        <li><button className="dropdown-item"
+                            onClick={()=>signOut(auth)}
+                        >Logout</button></li>
                     </ul>
                 </div>
               {/* drop-down */}

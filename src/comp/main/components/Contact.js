@@ -59,7 +59,7 @@ const Contact = ({setCombid}) => {
                             </h4>
                         </div>
                         <div className="date"> 
-                            <h4>{ timeString && (timeString.substring(0,4)+" "+timeString.substring(8,10))}</h4>
+                            <h4>{ timeString && (timeString.substring(0,5)+" "+timeString.substring(8,11))}</h4>
                         </div>
                     </div>
                     )

@@ -54,8 +54,12 @@ const Input = () => {
     }
 
     const updateImage=()=>{
+        if(image){
+
+        
         const imageRef=ref(storage,`images/${Date.now()}`);
         const uploadTask = uploadBytesResumable(imageRef,image);
+        console.log("image upload...");
 
         uploadTask.on('state_changed',
             (snapshot)=>{
@@ -75,6 +79,7 @@ const Input = () => {
                     saveMessage()
                     .then(()=>{
                         dispatch({type:"done"});
+                        setImage(null);
                     })
                     .catch((err)=>{
                         console.log(err.message);
@@ -83,6 +88,7 @@ const Input = () => {
                 });
             }
         )
+        }
 
     }
 
