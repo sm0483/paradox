@@ -1,8 +1,13 @@
-import pr from '../../../assets/login.jpg'
-
+import Pop from "./Pop-up";
+import { useState } from "react";
 
 
 const Reciver = ({message,type}) => {
+
+    const [pop,setPop]=useState(false);
+    const popup=(message)=>{
+        setPop(message);
+    }
 
     return(
         <div className="message reciver">
@@ -16,14 +21,21 @@ const Reciver = ({message,type}) => {
             {
                 type==="image" &&
                 <div className="message-image reciver">
-                    <img src={message} alt={message} />
+                    <img src={message} alt={message} onClick={()=>popup(message)} />
                 </div>
     
+            }
+
+
+            {   
+                type==="image" && 
+                <Pop message={message} pop={pop} setPop={setPop}/>
+            
             }
        
         </div>
     );
-    
+                
    
 }
  
