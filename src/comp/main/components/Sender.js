@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import pr from '../../../assets/login.jpg'
 import Pop from './Pop-up';
 
 
