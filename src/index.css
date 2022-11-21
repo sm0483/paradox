@@ -8,3 +8,14 @@
 .spa{
     min-height: 100vh;
 }
+
+
+.alert-container{
+    position: fixed;
+    width: 70%;
+    top: 5em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    left: 25em;
+}
