@@ -9,7 +9,7 @@ const EmailLogin = () => {
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
     const navigate=useNavigate();
-    const {getError} =useError();
+    const {dispatch} =useError();
 
     const signIn=async(e)=>{
         e.preventDefault();         
@@ -18,8 +18,8 @@ const EmailLogin = () => {
             console.log(response);
             navigate('/home');
         }catch(err){
-            getError(err.message);
-            navigate('/error');
+            dispatch({type:"UPDATE",message:err.message})
+            console.log(err.message);
         }
     }
 

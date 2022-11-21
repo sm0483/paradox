@@ -2,13 +2,14 @@ import Head from './component/Head';
 import Oauth2 from './component/LoginTwo';
 import EmailLogin from './component/EmailLogin';
 import NavLink from './component/Link';
+import ErrorMessage from '../error-message/ErrorMessage';
 
 
 const Login = () => {
 
-
     return ( 
         <section className="login container-fluid">
+            <ErrorMessage/>
             <div className="login-page row">
                 <Head/>
                 <div className="login-input col-7">

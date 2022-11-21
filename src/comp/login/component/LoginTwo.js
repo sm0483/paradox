@@ -13,7 +13,7 @@ import { auth } from '../../../firebase/Firebase';
 const Oauth2 = () => {
 
     const navigate=useNavigate();
-    const {getError} =useError();
+    const {dispatch,} =useError();
 
     const checkUserInChat=async(currentUser)=>{
         try{
@@ -23,7 +23,7 @@ const Oauth2 = () => {
             }
             return false;
         }catch(err){
-            getError(err.message);
+            dispatch({type:"UPDATE",message:err.message})
             console.log(err)
         }
     }
@@ -37,7 +37,8 @@ const Oauth2 = () => {
             console.log("gelly fish");
             await setDoc(doc(db,"chatUser",currentUser.uid),{});
         }catch(err){
-            getError(err.message);
+            dispatch({type:"UPDATE",message:err.message})
+            
         }
 
     }
@@ -52,8 +53,8 @@ const Oauth2 = () => {
             }
             return false;
         }catch(err){
-            getError(err.message);
-            navigate('/error');
+            dispatch({type:"UPDATE",message:err.message})
+
         }
     }
 
@@ -80,8 +81,8 @@ const Oauth2 = () => {
             });
         }catch(err){
             console.log(err.message);
-            getError(err.message);
-            navigate('/error');
+            dispatch({type:"UPDATE",message:err.message})
+
         }
     }
 
@@ -96,8 +97,8 @@ const Oauth2 = () => {
             navigate('/home')
         }catch(err){
             console.log(err.message);
-            getError(err.message);
-            navigate('/error');
+            dispatch({type:"UPDATE",message:err.message});
+
         }
     }
 
