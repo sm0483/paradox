@@ -9,6 +9,7 @@ import { createUserWithEmailAndPassword, GoogleAuthProvider, signInWithPopup } f
 import { db } from '../../firebase/Firebase';
 import {doc,setDoc,getDoc} from 'firebase/firestore'
 import Head from '../login/component/Head'
+import ErrorMessage from '../error-message/ErrorMessage'
 
 
 
@@ -17,7 +18,7 @@ const Register = () => {
 
     const [email,setEmail]=useState("");
     const [password,setPassword]=useState("");
-    const {getError}=useError();
+    const {dispatch}=useError();
     const navigate=useNavigate();
 
     const checkUserInChat=async(currentUser)=>{
@@ -28,7 +29,7 @@ const Register = () => {
             }
             return false;
         }catch(err){
-            getError(err.message);
+            dispatch({type:"UPDATE",message:err.message})
             console.log(err)
         }
     }
@@ -38,10 +39,9 @@ const Register = () => {
         try{
             const check=await checkUserInChat(currentUser);
             if(check)return;
-            console.log("gelly fish");
             await setDoc(doc(db,"chatUser",currentUser.uid),{});
         }catch(err){
-            getError(err.message);
+            dispatch({type:"UPDATE",message:err.message})
         }
 
     }
@@ -49,8 +49,6 @@ const Register = () => {
 
     const saveUser=async(currentUser)=>{
         try{
-            console.log(currentUser.uid+"cat fish");
-            console.log(currentUser.photoURL);
             let photoURL=null;
             let displayName="unknown";
             if(currentUser.photoURL){
@@ -68,8 +66,7 @@ const Register = () => {
             });
         }catch(err){
             console.log(err.message);
-            getError(err.message);
-            navigate('/error');
+            dispatch({type:"UPDATE",message:err.message})
         }
     }
 
@@ -83,8 +80,7 @@ const Register = () => {
             navigate('/detail');
         }catch(err){
             console.log(err.message);
-            getError(err.message);
-            navigate('/error');
+            dispatch({type:"UPDATE",message:err.message})
         }
 
     }
@@ -99,8 +95,7 @@ const Register = () => {
             navigate('/home')
         }catch(err){
             console.log(err.message);
-            getError(err.message);
-            navigate('/error');
+            dispatch({type:"UPDATE",message:err.message})
         }
     }
 
@@ -109,6 +104,7 @@ const Register = () => {
         <section className="register container-fluid">
             <div className="register-page row">
                <Head/>
+               <ErrorMessage/>
                 <div className="register-input col-7">
                     <div className="input-container">
                         <div className="input-head ">
