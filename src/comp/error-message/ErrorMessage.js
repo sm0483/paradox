@@ -12,7 +12,7 @@ import "./ErrorMessage.css"
 
 
 const ErrorMessage = () => {
-    const {state,}=useError();
+    const {state,dispatch}=useError();
 
     const [warn,setWarn]=useState(null);
     const [hide,setHide]=useState(true);
@@ -28,13 +28,19 @@ const ErrorMessage = () => {
     },[state.refresh])
 
 
+    const closePopup=()=>{
+        setHide(true);
+        dispatch({type:"UPDATE",message:""});
+    }
+
+
     if(state.message){
     return(
         <div className={`${hide && "hide"} alert-container`}>
             <div className="alert alert-success alert-dismissible fade show">
                 <strong>Success!</strong> {warn}
                 <button type="button" className="btn-close" 
-                        onClick={()=>setHide(true)}
+                        onClick={()=>closePopup()}
                 ></button>
             </div> 
 
