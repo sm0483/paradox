@@ -1,6 +1,6 @@
 import detail from '../../assets/login.jpg'
 import { useNavigate } from 'react-router-dom';
-import { useEffect, useState } from 'react';
+import {  useState } from 'react';
 import { useError } from '../../context/ErrorContext';
 import {doc, updateDoc} from 'firebase/firestore'
 import {useAuth} from '../../context/AuthContext'
@@ -9,6 +9,7 @@ import { storage } from '../../firebase/Firebase';
 import { ref,uploadBytesResumable,getDownloadURL } from 'firebase/storage';
 import { useReducer } from 'react';
 import { updateProfile } from 'firebase/auth';
+import ErrorMessage from '../error-message/ErrorMessage';
 
 const reducer=(state,action)=>{
     switch(action.type){
@@ -32,7 +33,7 @@ const Detail = () => {
     const navigate=useNavigate();
     const [name,setName]=useState("");
     const [image,setImage]=useState("");
-    const {getError}=useError();
+    const {dispatch:errorDispatch}=useError();
     const {currentUser}=useAuth();
     const [imageUrl,setImageUrl]=useState("");
     const imageState={
@@ -56,8 +57,8 @@ const Detail = () => {
                 photoURL:imageUrl
             });
         }catch(err){
-            console.log(err.message)
-            getError(err.message);
+            console.log(err.message);
+            errorDispatch({type:"UPDATE",message:err.message});
         }
 
     }
@@ -70,7 +71,7 @@ const Detail = () => {
             })
         }catch(err){
             console.log(err.message)
-            getError(err.message);
+            errorDispatch({type:"UPDATE",message:err.message});
         }
     }
 
@@ -81,7 +82,7 @@ const Detail = () => {
             await uploadDataAuth();
             navigate('/home');
         }catch(err){
-            getError(err.message)
+            errorDispatch({type:"UPDATE",message:err.message});
         }
 
     }
@@ -113,7 +114,9 @@ const Detail = () => {
                 dispatch({type:"upload",progress:value,})
             },
             (error)=>{
-                console.log(error)
+                console.log(error);
+                errorDispatch({type:"UPDATE",message:error.message});
+
             },
             ()=>{
                 getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
@@ -127,6 +130,7 @@ const Detail = () => {
 
     return ( 
         <section className="detail container-fluid">
+            <ErrorMessage/>
             <div className="detail-page row">
                 <div className="img-container  bg-danger col-3">
                     <img  src={detail} alt="detail" className='img-fluid' />

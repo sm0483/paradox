@@ -7,6 +7,7 @@ import Chat from './components/Chats';
 import Input from './components/Input';
 import { ContactProvider } from '../../context/ContactContext';
 import { ImageProvider } from '../../context/ImageContext';
+import ErrorMessage from '../error-message/ErrorMessage';
 
 
 const Main = () => {
@@ -18,6 +19,7 @@ const Main = () => {
         <ContactProvider>
             <ImageProvider>   
                 <section className="main">
+                    <ErrorMessage/>
                     <div className="container-fluid main-box">
                         {/* contact-box */}
                         <div className="contact-box">

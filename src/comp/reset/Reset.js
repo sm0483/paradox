@@ -1,10 +1,12 @@
 import reset from '../../assets/login.jpg'
 import { Link } from 'react-router-dom';
+import ErrorMessage from '../error-message/ErrorMessage'
 
 const Reset = () => {
     return ( 
         <section className="reset container-fluid">
             <div className="reset-page row">
+                <ErrorMessage/>
                 <div className="img-container  bg-danger col-3">
                     <img  src={reset} alt="reset" className='img-fluid' />
                 </div>
